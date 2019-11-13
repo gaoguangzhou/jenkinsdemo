@@ -8,11 +8,13 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class DemoController {
 	
+	private static volatile boolean flag = false;
+	
 	@RequestMapping("/demo/hi")
-	public String helloWorld(int a) {
-
+	public String helloWorld(int a, boolean t) {
+		flag = t;
 		ReturnTest returnTest = new ReturnTest();
-		while (true) {
+		while (flag) {
 			try {
 				returnTest.getIntVal(a);
 				TimeUnit.MILLISECONDS.sleep(5);
@@ -21,6 +23,8 @@ public class DemoController {
 				 System.out.println("error:" + e.getMessage());
 			}
 		}
+		
+		return "运行结束";
 	}
 	
 }
