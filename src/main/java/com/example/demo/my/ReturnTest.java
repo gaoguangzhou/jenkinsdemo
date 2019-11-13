@@ -13,7 +13,10 @@ public class ReturnTest {
 	}
 
 	public int getIntVal(int in) {
-
+//      if (in < 7) {
+//      System.out.println("in < 7, return");
+//      throw new UnsupportedOperationException("test");
+//  }
 		if (in == 5) {
 			String msg = null;
 			// produce npe
