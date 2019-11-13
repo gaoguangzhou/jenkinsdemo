@@ -11,23 +11,16 @@ public class DemoController {
 	@RequestMapping("/demo/hi")
 	public String helloWorld(int a) {
 
-		new Thread(new Runnable() {
-			private ReturnTest returnTest = new ReturnTest();
-
-			@Override
-			public void run() {
-				while (true) {
-					try {
-						System.err.println(returnTest.getIntVal(a));
-						TimeUnit.MILLISECONDS.sleep(5);
-					} catch (Exception e) {
-						 e.printStackTrace();
-						 System.out.println("error:" + e.getMessage());
-					}
-				}
+		ReturnTest returnTest = new ReturnTest();
+		while (true) {
+			try {
+				returnTest.getIntVal(a);
+				TimeUnit.MILLISECONDS.sleep(5);
+			} catch (Exception e) {
+				 e.printStackTrace();
+				 System.out.println("error:" + e.getMessage());
 			}
-		}).start();
-	
-		return "Hello World";
+		}
 	}
+	
 }
