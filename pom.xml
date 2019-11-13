@@ -39,6 +39,12 @@
 		</dependency>
 
 		<dependency>
+			<groupId>org.javassist</groupId>
+			<artifactId>javassist</artifactId>
+			<version>3.18.1-GA</version>
+		</dependency>
+
+		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<scope>test</scope>
@@ -65,6 +71,23 @@
 					<source>${java.version}</source>
 					<target>${java.version}</target>
 					<encoding>${project.build.sourceEncoding}</encoding>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<configuration>
+					<archive>
+						<manifestEntries>
+							<Project-name>${project.name}</Project-name>
+							<Project-version>${project.version}</Project-version>
+							<Premain-Class>com.example.demo.agent.MyAgent</Premain-Class>
+							<Can-Redefine-Classes>true</Can-Redefine-Classes>
+							<Can-Retransform-Classes>true</Can-Retransform-Classes>
+							<Boot-Class-Path>javassist-3.18.1-GA.jar</Boot-Class-Path>
+						</manifestEntries>
+					</archive>
+					<skip>true</skip>
 				</configuration>
 			</plugin>
 		</plugins>
